@@ -18,4 +18,5 @@ Resources:
     Properties:
       InstanceType: t3.micro
       ImageId: ami-0263e4deb427da90e
-      SecurityGroups: !Ref WebServerSecGroup
+      SecurityGroups: 
+        - !Ref WebServerSecGroup
