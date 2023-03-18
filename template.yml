@@ -1,8 +1,4 @@
 AWSTemplateFormatVersion: 2010-09-09
-Parameters:
-  EnvironmentName:
-    Description: Environment Name of the project
-    Type: String
 
 Resources:
   #WebServerSecurityGroup
