@@ -10,3 +10,8 @@
    become_user: root
    roles:
     - setup
+   vars_prompt:
+    - name: "connection to server"
+      prompt: "Are you sure you want to continue connecting (yes/no)?"
+      private: yes
+
