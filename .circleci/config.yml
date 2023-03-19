@@ -22,7 +22,7 @@ jobs:
       - run:
           name: "Configure Infrastructure"
           command: "apk add --update ansible"
-      -run:
+      - run:
           name: "Run Playbook and configure server"
           command:  "ansible-playbook -i inventory main.yml"
 # Invoke jobs via workflows
