@@ -27,7 +27,7 @@ jobs:
           command: "apk add --update ansible"
       - run:
           name: "Run Playbook and configure server"
-          command:  "ansible-playbook -i inventory main-remote.yml"
+          command:  "ansible-playbook -i inventory main-remote.yml --private-key udacityprivate.pem"
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
