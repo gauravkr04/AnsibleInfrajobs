@@ -28,6 +28,19 @@
     state: latest
     update_cache: yes
 
+- name: "download"
+  become: true
+  command: curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -
+  args:
+    chdir: /root
+    
+- name: "upgrade"
+  become: true
+  command: apt-get install -y nodejs
+  args:
+    chdir: /root
+
+
 - name: "Install pm2"
   become: true
   npm:
