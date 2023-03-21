@@ -14,24 +14,41 @@ jobs:
  #         name: "Create Cloudformation"
  #         command: "aws cloudformation deploy \ --template-file template.yml \ --stack-name myStack-${CIRCLE_WORKFLOW_ID:0:5} \ --region us-east-1"
 
-  configure-infrastructure:
+ # configure-infrastructure:
+  #  docker:
+ #     - image: python:3.11-rc-alpine
+ #   steps:
+ #     - checkout
+ #     - add_ssh_keys:
+ #       # Added SSH fingerprints from project setting
+ #         fingerprints: ["f9:f3:e1:94:16:e7:4f:02:0d:7d:16:bb:c5:84:06:b4"] 
+ #     - run:
+ #         name: "Configure Infrastructure"
+ #         command: "apk add --update ansible"
+ #     - run:
+ #         name: "Run Playbook and configure server"
+ #         command:  "ansible-playbook -i inventory main-remote.yml --private-key udacityprivate.pem"
+
+  smoke_test:
     docker:
-      - image: python:3.11-rc-alpine
+      - image: alpine:latest
     steps:
-      - checkout
-      - add_ssh_keys:
-        # Added SSH fingerprints from project setting
-          fingerprints: ["f9:f3:e1:94:16:e7:4f:02:0d:7d:16:bb:c5:84:06:b4"] 
+      - run: apk add --update curl
       - run:
-          name: "Configure Infrastructure"
-          command: "apk add --update ansible"
-      - run:
-          name: "Run Playbook and configure server"
-          command:  "ansible-playbook -i inventory main-remote.yml --private-key udacityprivate.pem"
+          name: smoke test
+          command: |
+            URL: "https://blog.udacity.com/"
+            if curl -s --head ${URL}
+            then
+              return 0
+            else
+              return 1
+            fi
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
   myWorkflow:
     jobs:
     #  - create-infastructure
-      - configure-infrastructure
+    #  - configure-infrastructure
+      - smoke_test
