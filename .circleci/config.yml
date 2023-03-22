@@ -22,7 +22,7 @@ jobs:
       - run:
           name: "Create Cloudformation"
         #  command: "aws cloudformation deploy \ --template-file template.yml \ --stack-name myStack-${CIRCLE_WORKFLOW_ID:0:5} \ --region us-east-1"
-        command: "aws cloudformation deploy \ --template-file template.yml \ --stack-name myStack-f3023 \ --region us-east-1"
+          command: "aws cloudformation deploy \ --template-file template.yml \ --stack-name myStack-f3023 \ --region us-east-1"
  # configure-infrastructure:
   #  docker:
  #     - image: python:3.11-rc-alpine
