@@ -62,7 +62,7 @@ jobs:
 workflows:
   myWorkflow:
     jobs:
-      - create-infastructure
+    #  - create-infastructure
     #  - configure-infrastructure
       - smoke_test:
           requires:
