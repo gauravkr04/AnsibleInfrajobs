@@ -11,7 +11,7 @@ commands:
           name: Destroy Environment
           when: on_fail
           command:  |
-            "aws cloudformation delete-stack --stack-name myStack-f3023"
+            "aws cloudformation delete-stack --stack-name myStack-f3023 --region us-east-1"
 
 jobs:
   create-infastructure:
