@@ -5,7 +5,7 @@ Parameters:
     Type: String
 
 Resources:
-  CloudfrontOriginAccessIdentity:
+  CloudFrontOriginAccessIdentity:
     Type: "AWS::CloudFront::CloudFrontOriginAccessIdentity"
     Properties:
       CloudFrontOriginAccessIdentityConfig:

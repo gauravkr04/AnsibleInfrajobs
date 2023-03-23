@@ -21,7 +21,7 @@ jobs:
       - run:
           name: "Create Cloudformation"
         #  command: "aws cloudformation deploy \ --template-file template.yml \ --stack-name myStack-${CIRCLE_WORKFLOW_ID:0:5} \ --region us-east-1"
-          command: "aws cloudformation deploy \ --template-file cloudfront.yml \ --stack-name production-distro \ --parameters-override PipelineID=mybucket666699256332 \ --tags project=udapeople &"
+          command: "aws cloudformation deploy \ --template-file cloudfront.yml \ --stack-name production-distro \ --parameter-overrides PipelineID=mybucket666699256332 \ --tags project=udapeople &"
 
  # configure-infrastructure:
   #  docker:
