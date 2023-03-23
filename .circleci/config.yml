@@ -11,7 +11,7 @@ commands:
           name: Destroy Environment
           when: on_fail
           command:  |
-            "aws cloudformation delete-stack --stack-name myStack-f3023 --region us-east-1"
+            "aws cloudformation delete-stack --stack-name myStack-f3023"
 
 jobs:
   create-infastructure:
@@ -21,8 +21,10 @@ jobs:
       - checkout
       - run:
           name: "Create Cloudformation"
-        #  command: "aws cloudformation deploy \ --template-file template.yml \ --stack-name myStack-${CIRCLE_WORKFLOW_ID:0:5} \ --region us-east-1"
-          command: "aws cloudformation deploy \ --template-file template.yml \ --stack-name myStack-f3023 \ --region us-east-1"
+          command: "aws cloudformation deploy \ --template-file template.yml \ --stack-name myStack-${CIRCLE_WORKFLOW_ID:0:5} \ --region us-east-1"
+        #  command: "aws cloudformation deploy \ --template-file template.yml \ --stack-name myStack-f3023 \ --region us-east-1"
+      - run: return 1
+      - destroy-environment
  # configure-infrastructure:
   #  docker:
  #     - image: python:3.11-rc-alpine
@@ -62,8 +64,8 @@ jobs:
 workflows:
   myWorkflow:
     jobs:
-    #  - create-infastructure
+      - create-infastructure
     #  - configure-infrastructure
-      - smoke_test
+    #  - smoke_test
     #      requires:
     #        - create-infastructure
